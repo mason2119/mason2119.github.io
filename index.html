@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杨思涵 · 数据分析作品集</title>
+<style>
+  :root{
+    --bg:#f6f7f9;
+    --card:#ffffff;
+    --ink:#14181f;
+    --ink2:#5b6474;
+    --ink3:#8b93a3;
+    --line:#e4e7ec;
+    --accent:#2f5de3;
+    --accent-soft:#eef2fe;
+    --warm:#b45309;
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 56px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#ffffff 0%,var(--bg) 100%)}
+  .hero .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:999px;
+    font-weight:600;margin-bottom:22px;
+  }
+  .hero h1{font-size:52px;line-height:1.15;letter-spacing:-.02em;font-weight:800;margin-bottom:14px}
+  .hero h1 span{color:var(--ink3);font-weight:400}
+  .hero .lede{font-size:17px;color:var(--ink2);max-width:680px;margin-bottom:26px}
+  .hero .lede strong{color:var(--ink);font-weight:600}
+  .contact{display:flex;flex-wrap:wrap;gap:10px}
+  .contact a{
+    display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink2);
+    text-decoration:none;border:1px solid var(--line);background:#fff;
+    padding:8px 14px;border-radius:999px;transition:.18s;
+  }
+  .contact a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+  .contact a b{color:var(--ink3);font-weight:500}
+
+  /* ---------- Stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+  .stat{background:#fff;padding:26px 24px}
+  .stat .n{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+  .stat .n em{font-style:normal;font-size:16px;font-weight:700;color:var(--ink2);margin-left:2px}
+  .stat .k{font-size:12.5px;color:var(--ink3);margin-top:6px}
+
+  /* ---------- Section ---------- */
+  section{padding:64px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:32px;flex-wrap:wrap}
+  .sec-head h2{font-size:26px;font-weight:750;letter-spacing:-.01em}
+  .sec-head .idx{font-size:12px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+  .sec-head .desc{font-size:13.5px;color:var(--ink3);margin-left:auto}
+
+  /* ---------- Project card ---------- */
+  .proj{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px 32px;margin-bottom:20px;transition:.2s;
+  }
+  .proj:hover{border-color:#cfd6e4;box-shadow:0 8px 28px -12px rgba(20,24,31,.12)}
+  .proj-top{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .proj .num{
+    font-size:13px;font-weight:800;color:var(--accent);background:var(--accent-soft);
+    width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+    flex:none;margin-top:2px;font-variant-numeric:tabular-nums;
+  }
+  .proj h3{font-size:20px;font-weight:700;letter-spacing:-.01em;flex:1;min-width:240px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{font-size:11.5px;padding:3px 9px;border-radius:6px;font-weight:600;white-space:nowrap}
+  .badge.solo{background:#ecfdf5;color:#047857}
+  .badge.team{background:#fef3f2;color:#b42318}
+  .badge.course{background:#f2f4f7;color:#475467}
+  .badge.star{background:var(--accent-soft);color:var(--accent)}
+  .proj .meta{font-size:13px;color:var(--ink3);margin-bottom:16px;padding-left:42px}
+  .proj .body{font-size:14.5px;color:var(--ink2);margin-bottom:20px}
+  .proj .body b{color:var(--ink);font-weight:600}
+
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+  .metric{background:#fafbfc;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .metric .v{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--accent);line-height:1.2;font-variant-numeric:tabular-nums}
+  .metric .v em{font-style:normal;font-size:13px;font-weight:700;color:var(--ink2);margin-left:2px}
+  .metric .v.warm{color:var(--warm)}
+  .metric .l{font-size:12px;color:var(--ink3);margin-top:4px;line-height:1.5}
+
+  ul.pts{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+  ul.pts li{font-size:14px;color:var(--ink2);padding-left:16px;position:relative}
+  ul.pts li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:#c3cad8}
+  ul.pts li b{color:var(--ink);font-weight:600}
+  ul.pts li code{background:#f2f4f7;padding:1px 5px;border-radius:4px;font-size:12.5px;color:#334155}
+
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+  .tag{font-size:12px;color:var(--ink2);background:#f2f4f7;padding:4px 10px;border-radius:6px;font-weight:500}
+
+  .links{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;align-items:center}
+  .links a{color:var(--accent);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:5px}
+  .links a:hover{text-decoration:underline}
+  .links span{color:var(--ink3)}
+
+  /* ---------- Timeline ---------- */
+  .tl{border-left:2px solid var(--line);padding-left:26px;margin-left:6px}
+  .tl-item{position:relative;padding-bottom:32px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-33px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:2.5px solid var(--accent)}
+  .tl-item .when{font-size:12.5px;color:var(--ink3);font-variant-numeric:tabular-nums;margin-bottom:4px}
+  .tl-item h4{font-size:16.5px;font-weight:700;margin-bottom:2px}
+  .tl-item .role{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px}
+  .tl-item p{font-size:14px;color:var(--ink2)}
+
+  /* ---------- Skills ---------- */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .skill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .skill h4{font-size:13px;font-weight:700;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  .skill .tags{margin-bottom:0}
+  .skill .tag{background:var(--accent-soft);color:#1e40af}
+
+  /* ---------- Misc list ---------- */
+  .other{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:22px 24px;margin-top:16px}
+  .other h4{font-size:13px;font-weight:700;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+  .other p{font-size:13.5px;color:var(--ink2);line-height:1.9}
+  .other p b{color:var(--ink);font-weight:600}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;background:#fff}
+  footer .fu{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  footer h3{font-size:18px;font-weight:700;margin-bottom:6px}
+  footer p{font-size:13.5px;color:var(--ink3)}
+  footer .note{font-size:12px;color:var(--ink3);margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);line-height:1.8}
+
+  @media (max-width:860px){
+    .hero{padding:60px 0 40px}
+    .hero h1{font-size:36px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .metrics{grid-template-columns:1fr}
+    .grid2{grid-template-columns:1fr}
+    .proj{padding:24px 20px}
+    .proj .meta{padding-left:0}
+    section{padding:44px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Data Analysis Portfolio · 2027</div>
+    <h1>杨思涵 <span>·</span> 数据分析师</h1>
+    <p class="lede">
+      数据科学与大数据技术本科（天津财经大学，2027 届）。做过 <strong>272 万条埋点数据的增长归因</strong>、
+      <strong>39 家医疗机构的省级项目驻点交付</strong>、<strong>8,400 个观测的 A 股因子模型对比</strong>、
+      <strong>BERT 与 LLM 的对照实验</strong>。习惯先用数据定位瓶颈，再谈策略。
+    </p>
+    <div class="contact">
+      <a href="mailto:3384144812@qq.com"><b>邮箱</b> 3384144812@qq.com</a>
+      <a href="tel:15620055694"><b>电话</b> 15620055694</a>
+      <a href="https://github.com/mason2119" target="_blank" rel="noopener"><b>GitHub</b> github.com/mason2119</a>
+      <a><b>城市</b> 天津 · 武清</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">5<em>个</em></div><div class="k">完整分析项目</div></div>
+    <div class="stat"><div class="n">272.8<em>万</em></div><div class="k">条用户行为埋点记录</div></div>
+    <div class="stat"><div class="n">39<em>家</em></div><div class="k">医疗机构服务覆盖</div></div>
+    <div class="stat"><div class="n">1,000<em>篇</em></div><div class="k">CNKI 论文语料</div></div>
+  </div>
+</div>
+
+<section class="wrap" id="work">
+  <div class="sec-head">
+    <span class="idx">01</span>
+    <h2>项目作品</h2>
+    <span class="desc">业务分析 · 金融量化 · 统计 · 机器学习 · NLP</span>
+  </div>
+
+  <!-- 项目 1 -->
+  <article class="proj">
+    <div class="proj-top">
+      <div class="num">01</div>
+      <h3>直播平台用户行为分析与增长策略</h3>
+      <div class="badges">
+        <span class="badge star">主项目</span>
+        <span class="badge course">课程综合实战</span>
+        <span class="badge solo">独立完成</span>
+      </div>
+    </div>
+    <div class="meta">2026/05 – 2026/07 · 5 份报告 / 5 个分析脚本</div>
+
+    <p class="body">
+      面向 <b>MAU 2.72 亿</b>、年直播收入 15.3 亿美元的出海直播平台，围绕「留存 — 转化 — 付费 — 生态」
+      四层业务问题做端到端分析。清洗 7 张业务表共 <b>272.8 万条</b>行为记录，用马尔可夫链量化用户生命周期转移概率，
+      再以 A/B 实验验证策略有效性。
+    </p>
+
+    <div class="metrics">
+      <div class="metric"><div class="v">+46.14<em>pp</em></div><div class="l">首日观看 ≥10 分钟后<br>次日留存率跃升幅度</div></div>
+      <div class="metric"><div class="v">+12.48<em>%</em></div><div class="l">A/B 实验整体留存提升<br>（P=3.95e-98）</div></div>
+      <div class="metric"><div class="v warm">7<em>%</em></div><div class="l">Engaged→Casual<br>全链最薄弱转化率</div></div>
+    </div>
+
+    <ul class="pts">
+      <li><b>留存魔法数字</b>：分箱 + 卡方检验定位首日观看 ≥10 分钟为质变拐点，留存率 25.34% → 71.48%（p&lt;0.001）</li>
+      <li><b>生命周期建模</b>：马尔可夫链五阶段转移矩阵，识别 Engaged→Casual 仅 7% 为最大瓶颈</li>
+      <li><b>付费归因</b>：K-Means（轮廓系数 0.819）分群，付费群人均消费 $258.91 vs 非付费群 $3.29；Spearman 显示 PK 参与（ρ=0.119）强于观看时长（ρ=0.092）</li>
+      <li><b>模型对比</b>：MLP 留存预测 AUC 0.7776 → 0.7950；收入回归 R² 0.8669 → 0.9235（RMSE 降低 24.2%）</li>
+    </ul>
+
+    <div class="tags">
+      <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span>
+      <span class="tag">随机森林</span><span class="tag">马尔可夫链</span><span class="tag">A/B 测试</span><span class="tag">Wilcoxon</span>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/mason2119/live-user-behavior-analysis" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      <span>含 5 份完整报告 + 全部图表与结果 CSV</span>
+    </div>
+  </article>
+
+  <!-- 项目 2 -->
+  <article class="proj">
+    <div class="proj-top">
+      <div class="num">02</div>
+      <h3>基于 BERT 与 LLM 优化策略的学术文本分类</h3>
+      <div class="badges">
+        <span class="badge course">课程结课项目</span>
+        <span class="badge solo">独立完成</span>
+      </div>
+    </div>
+    <div class="meta">2026/05 – 2026/06 · 16 页研究报告 + 可复用代码与数据集</div>
+
+    <p class="body">
+      仅凭论文标题判断是否发表于国内经济学顶级期刊（《经济研究》《管理世界》）。爬取 CNKI
+      <b>1,000 篇</b>论文（1958–2026，6 主题 × 7 期刊），对比三条技术路线：BERT 监督微调、
+      LLM 零样本、以及 LLM 递进式提示优化（特征增强 → Few-shot → CoT）。
+    </p>
+
+    <div class="metrics">
+      <div class="metric"><div class="v">62.00<em>%</em></div><div class="l">Few-shot 准确率<br>较基线 +4.67pp</div></div>
+      <div class="metric"><div class="v">+2.67<em>pp</em></div><div class="l">零参数更新反超<br>BERT 微调（59.33%）</div></div>
+      <div class="metric"><div class="v warm">64.00<em>%</em></div><div class="l">CoT 特异性<br>由 54.67% 提升</div></div>
+    </div>
+
+    <ul class="pts">
+      <li><b>数据工程</b>：客观标注规则（按实际发表期刊）实现正负样本 500:500 均衡，7:1.5:1.5 分层切分</li>
+      <li><b>BERT 微调</b>：bert-base-chinese + 768→2 分类头，依验证损失识别过拟合拐点，第 4 轮早停，AUC 0.6549</li>
+      <li><b>提示工程</b>：Ollama 本地部署 Qwen2.5-7B，8 个平衡示例的 Few-shot 即超越 700 条数据 + 5 轮梯度更新</li>
+      <li><b>可解释性</b>：CoT 四步推理让假阳性从 44 例降至 27 例，准确率不变而决策更审慎</li>
+    </ul>
+
+    <div class="tags">
+      <span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">BERT 微调</span>
+      <span class="tag">Ollama</span><span class="tag">Qwen2.5-7B</span><span class="tag">Few-shot</span><span class="tag">CoT</span>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/mason2119/cnki-bert-llm-classification" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      <span>含数据集、四策略测试结果与混淆矩阵对比</span>
+    </div>
+  </article>
+
+  <!-- 项目 3 -->
+  <article class="proj">
+    <div class="proj-top">
+      <div class="num">03</div>
+      <h3>谁更能解释 A 股收益：CAPM vs Fama-French 三因子</h3>
+      <div class="badges">
+        <span class="badge course">课程结课项目</span>
+        <span class="badge solo">独立完成</span>
+      </div>
+    </div>
+    <div class="meta">2026/06 · 100 只沪深 300 成分股 × 84 个月度（2018–2024）· 共 8,400 个观测</div>
+
+    <p class="body">
+      对 100 只沪深 300 成分股逐只做时间序列回归，从<b>拟合优度、因子显著性与截距项</b>三个维度，
+      比较单因子 CAPM 与 Fama-French 三因子模型对中国 A 股横截面收益的解释力，并回到 2018–2024 的风格轮动去做归因。
+    </p>
+
+    <div class="metrics">
+      <div class="metric"><div class="v">0.3709</div><div class="l">三因子模型平均 R²<br>CAPM 为 0.2370</div></div>
+      <div class="metric"><div class="v">+56<em>%</em></div><div class="l">R² 相对提升<br>ΔR² = 0.1338</div></div>
+      <div class="metric"><div class="v warm">97<em>%</em></div><div class="l">市场因子显著比例<br>平均 |t| = 5.8</div></div>
+    </div>
+
+    <ul class="pts">
+      <li><b>研究设计</b>：100 只成分股 × 84 个月度（2018-01–2024-12）共 8,400 个观测，逐股回归后再做横截面汇总</li>
+      <li><b>拟合优度</b>：CAPM 平均 R² 0.2370 → 三因子 0.3709（Δ=0.1338，相对 +56%），<b>100 只股票全部改善</b>、最大提升 0.4732；调整 R² 结论一致，排除变量增加的机械性提升</li>
+      <li><b>因子显著性</b>：市场因子 97% 样本显著（平均 |t|=5.8，β=0.885）；价值因子 HML 载荷 66% 显著（平均 |t|=3.1）强于规模因子 SMB 37%（载荷 0.280）</li>
+      <li><b>反直觉发现</b>：拟合更好 ≠ 定价误差更小 —— 三因子 R² 提升后，显著 Alpha 的比例反而从 10% 升到 16%（残差方差下降使 t 值变大），说明 A 股存在三因子未覆盖的真实异象</li>
+      <li><b>风格归因</b>：结合 2018 贸易摩擦、2020 疫情、2022–2024 中特估行情，说明 8 年间至少四次大小盘与价值/成长轮动，单一市场因子无法覆盖</li>
+    </ul>
+
+    <div class="tags">
+      <span class="tag">因子模型</span><span class="tag">CAPM</span><span class="tag">Fama-French</span>
+      <span class="tag">时间序列回归</span><span class="tag">Jensen's Alpha</span><span class="tag">横截面分析</span><span class="tag">statsmodels</span>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/mason2119/capm-vs-fama-french" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      <span>含逐股回归结果 CSV、10 张图表与报告</span>
+    </div>
+  </article>
+
+  <!-- 项目 4 -->
+  <article class="proj">
+    <div class="proj-top">
+      <div class="num">04</div>
+      <h3>老年人生活满意度分布特征研究</h3>
+      <div class="badges">
+        <span class="badge course">课程结课项目</span>
+        <span class="badge solo">独立完成</span>
+      </div>
+    </div>
+    <div class="meta">2026/06 · CLASS 2020 全国调查数据 · 四层多重检验体系</div>
+
+    <p class="body">
+      基于中国老年社会追踪调查（CLASS）2020 年数据，以 <b>11,304 名</b> 60 周岁及以上老年人为样本，
+      用「分布检验 → 秩检验 → 相关分析 → 回归建模」四层证据链，回答健康、互联网、婚姻究竟哪个真正影响老年福祉。
+    </p>
+
+    <div class="metrics">
+      <div class="metric"><div class="v">11,304</div><div class="l">CLASS 2020<br>有效老年人样本</div></div>
+      <div class="metric"><div class="v">5.47<em>×</em></div><div class="l">自评健康差者<br>生活不满意的几率（OR）</div></div>
+      <div class="metric"><div class="v warm">0.553</div><div class="l">性别差异 p 值<br>四层检验一致不显著</div></div>
+    </div>
+
+    <ul class="pts">
+      <li><b>分布检验</b>：K-S 检验（vs 均匀 D=0.412、vs 正态 D=0.276）、χ²=7,446.5（df=4）均 p&lt;0.001；Shapiro-Wilk W=0.864，分布呈右偏</li>
+      <li><b>效应量排序</b>：自评健康 D=0.359 远超互联网（0.112）、婚姻（0.093）、童年饥饿（0.080）</li>
+      <li><b>回归建模</b>：LR χ²(10)=1,843.78（p&lt;0.001）；健康差 OR=5.473（95%CI 4.99–6.00，Wald z=36.36），配偶与互联网为保护因素</li>
+      <li><b>零发现</b>：性别在 K-S、Wilcoxon、Spearman、Logistic 四层检验中<b>一致不显著</b>——老年生活满意度在性别维度呈现平等特征</li>
+    </ul>
+
+    <div class="tags">
+      <span class="tag">K-S 检验</span><span class="tag">Shapiro-Wilk</span><span class="tag">Kruskal-Wallis</span>
+      <span class="tag">Spearman</span><span class="tag">Logistic 回归</span><span class="tag">效应量</span><span class="tag">Python</span>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/mason2119/class2020-life-satisfaction" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      <span>含分析脚本、25 张图表与全部检验结果 JSON</span>
+    </div>
+  </article>
+
+  <!-- 项目 5 -->
+  <article class="proj">
+    <div class="proj-top">
+      <div class="num">05</div>
+      <h3>银行客户流失预测：四模型对比</h3>
+      <div class="badges">
+        <span class="badge course">课程项目</span>
+        <span class="badge solo">独立完成</span>
+      </div>
+    </div>
+    <div class="meta">2025/05 · 10,000 条银行客户记录 · 决策树 / 神经网络 / 随机森林 / KNN</div>
+
+    <p class="body">
+      面向客户流失预测的二分类任务，系统对比四种算法。重点不在「哪个模型最准」，
+      而在<b>指出准确率的陷阱</b>：数据不平衡下 87% 的准确率背后，流失客户召回率仅 47%。
+    </p>
+
+    <div class="metrics">
+      <div class="metric"><div class="v">0.870</div><div class="l">随机森林准确率<br>四模型中最高</div></div>
+      <div class="metric"><div class="v">0.8521</div><div class="l">随机森林 ROC-AUC<br>区分能力最优</div></div>
+      <div class="metric"><div class="v warm">0.22</div><div class="l">年龄特征重要性<br>最关键流失因子</div></div>
+    </div>
+
+    <ul class="pts">
+      <li><b>模型对比</b>：随机森林 0.870 / 神经网络 0.827 / 决策树 0.783，AUC 分别 0.8521 / 0.8101 / 0.6785</li>
+      <li><b>关键洞察</b>：随机森林精确率 0.7782 但召回率仅 0.4733 —— 高准确率掩盖了对流失客户的漏判</li>
+      <li><b>特征归因</b>：年龄（0.22）&gt; 账户余额（0.16）&gt; 估计工资（0.15）&gt; 信用评分（0.13）&gt; 产品数量（0.12）</li>
+    </ul>
+
+    <div class="tags">
+      <span class="tag">Scikit-learn</span><span class="tag">决策树</span><span class="tag">随机森林</span>
+      <span class="tag">MLP</span><span class="tag">KNN</span><span class="tag">特征重要性</span>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/mason2119/bank-churn-prediction" target="_blank" rel="noopener">GitHub 仓库 →</a>
+      <span>含原始数据、四模型训练脚本与实验报告</span>
+    </div>
+  </article>
+
+  <div class="other">
+    <h4>其他课程项目</h4>
+    <p>
+      <b>中文新闻文本分类（TextCNN vs Transformer）</b>——4 人小组作业（查昊旻 / 杨思涵 / 宋东昌 / 黄涛），10 类 5 万条 cnews 语料，TextCNN 训练集 macro-F1 0.964；
+      <b>Hadoop / Hive 电商订单数仓</b>——9,906 条订单 × 22 字段，15 条 HiveQL 完成基础统计 / 维度下钻 / 异常检测；
+      <b>XGBoost 超参数优化对比</b>——遗传算法 / 粒子群 / 贝叶斯 / 网格 / 随机五种方法，80 次评估预算，配对 t 检验 + Cohen's d；
+      <b>教育与性别对就业的影响</b>——CGSS2021 三维列联表与辛普森悖论验证（第九组）。
+      以上报告均可提供。
+    </p>
+  </div>
+</section>
+
+<section class="wrap" id="exp" style="padding-top:0">
+  <div class="sec-head">
+    <span class="idx">02</span>
+    <h2>实习经历</h2>
+    <span class="desc">省级医疗信息化项目 · 驻点交付</span>
+  </div>
+
+  <div class="tl">
+    <div class="tl-item">
+      <div class="when">2025/07 – 2025/09 · 四川达州（驻点）</div>
+      <h4>天津健康医疗大数据有限公司</h4>
+      <div class="role">数据分析助理 · 国家传染病智能监测预警前置软件达州项目</div>
+      <p>
+        负责全市 <b>39 家二级及以上医疗机构</b>（28 家公立 + 11 家民营，覆盖 7 个区县）的上报数据质量监控。
+        搭建筛查校验规则，每日核查监测指标推送、病原检测关联、临床检验关联、治疗用药关联 4 类核心数据，
+        完整率均稳定在 <b>100%</b>；推动 39 家机构“安装—部署—正式应用—转正”4 项指标全部达 100%，
+        待处理信息及时完成率 <b>99.98%</b>。担任项目专班日报汇报人，并逐一电话核查 36 家机构建立问题台账。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="skills" style="padding-top:0">
+  <div class="sec-head">
+    <span class="idx">03</span>
+    <h2>技能矩阵</h2>
+  </div>
+
+  <div class="grid2">
+    <div class="skill">
+      <h4>数据处理</h4>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+        <span class="tag">SQL</span><span class="tag">窗口函数</span><span class="tag">MySQL</span>
+        <span class="tag">网络爬虫</span><span class="tag">Excel 透视表</span>
+      </div>
+    </div>
+    <div class="skill">
+      <h4>金融与量化分析</h4>
+      <div class="tags">
+        <span class="tag">CAPM</span><span class="tag">Fama-French 三因子</span><span class="tag">时间序列回归</span>
+        <span class="tag">Jensen's Alpha</span><span class="tag">横截面分析</span><span class="tag">statsmodels</span>
+      </div>
+    </div>
+    <div class="skill">
+      <h4>机器学习与深度学习</h4>
+      <div class="tags">
+        <span class="tag">逻辑回归</span><span class="tag">随机森林</span><span class="tag">MLP</span>
+        <span class="tag">K-Means</span><span class="tag">马尔可夫链</span><span class="tag">PyTorch</span>
+        <span class="tag">BERT 微调</span><span class="tag">Few-shot / CoT</span>
+      </div>
+    </div>
+    <div class="skill">
+      <h4>统计与实验</h4>
+      <div class="tags">
+        <span class="tag">A/B 实验</span><span class="tag">Wilcoxon 秩和</span><span class="tag">K-S 检验</span>
+        <span class="tag">卡方检验</span><span class="tag">Logistic 回归</span><span class="tag">效应量</span>
+        <span class="tag">ROC / AUC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fu">
+      <div>
+        <h3>想聊得更细一点？</h3>
+        <p>项目报告、原始代码与实验日志都可以提供。</p>
+      </div>
+      <div class="contact">
+        <a href="mailto:3384144812@qq.com">3384144812@qq.com</a>
+        <a href="https://github.com/mason2119" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <p class="note">
+      说明：本页所有指标均来自对应项目的原始分析报告与实验记录，未做修饰。
+      项目来源已在每张卡片标注 —— “独立完成”指个人独立完成全部工作；列入「其他课程项目」的一律注明团队情况。
+      直播项目数据为课程提供的脱敏数据集，受授权限制不公开原始数据。
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
